@@ -7,6 +7,13 @@ BOT_DIR="/root/GangBoss-DiscordBot"
 UV_PATH="/root/.local/bin/uv"
 
 function install_uv() {
+    echo "Cloning bot repository into $BOT_DIR ..."
+    if [ ! -d "$BOT_DIR" ]; then
+        git clone "$REPO_URL" "$BOT_DIR"
+    else
+        echo "Bot directory already exists, skipping clone."
+    fi
+
     echo "Installing uv runtime..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -40,10 +47,7 @@ EOF
 
     echo "Enabling $SERVICE_NAME service to start on boot..."
     sudo systemctl enable "$SERVICE_NAME"
-    
-    echo "Downloading script from GitHub into $BOT_DIR ..."
-    wget -q -O "$BOT_DIR/install.sh" https://raw.githubusercontent.com/AmirKenzo/GangBoss-DiscordBot/main/install.sh
-    
+
     echo "Installing gangboss command in /usr/local/bin ..."
     sudo cp "$BOT_DIR/install.sh" /usr/local/bin/gangboss
     sudo chmod +x /usr/local/bin/gangboss
