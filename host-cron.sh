@@ -3,5 +3,5 @@ CMD="source /home/loserbo1/virtualenv/kenzobot/3.12/bin/activate && cd /home/los
 if screen -ls | grep bot1 | grep Detached &>/dev/null; then
     echo "Running"
 else
-    bash -c "$CMD && screen -d -m -S bot1 uv run main.py"
+    bash -c "$CMD && screen -d -m -S bot1 python main.py"
 fi
