@@ -40,6 +40,11 @@ EOF
 
     echo "Enabling $SERVICE_NAME service to start on boot..."
     sudo systemctl enable "$SERVICE_NAME"
+    
+    echo "Installing gangboss command in /usr/local/bin ..."
+    sudo cp "$0" /usr/local/bin/gangboss
+    sudo chmod +x /usr/local/bin/gangboss
+    echo "✅ You can now use the 'gangboss' command globally!"
 
 
 }
