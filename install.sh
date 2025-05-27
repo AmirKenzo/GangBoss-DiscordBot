@@ -41,6 +41,9 @@ EOF
     echo "Enabling $SERVICE_NAME service to start on boot..."
     sudo systemctl enable "$SERVICE_NAME"
     
+    echo "Downloading script from GitHub into $BOT_DIR ..."
+    wget -q -O "$BOT_DIR/install.sh" https://raw.githubusercontent.com/AmirKenzo/GangBoss-DiscordBot/main/install.sh
+    
     echo "Installing gangboss command in /usr/local/bin ..."
     sudo cp "$BOT_DIR/install.sh" /usr/local/bin/gangboss
     sudo chmod +x /usr/local/bin/gangboss
